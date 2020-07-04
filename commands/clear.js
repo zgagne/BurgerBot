@@ -1,6 +1,6 @@
 exports.run = (client, message, args) => {
-    let nbMessages = args.join(' ');
-    let nbDelete = 0;
+    let messagesToDelete = args.join(' ');
+    let messageDeleting = 0;
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.delete();
@@ -11,22 +11,20 @@ exports.run = (client, message, args) => {
         message.delete();
         message.channel.send(`Veuillez choisir un nombre supérieur à 0.`).catch(err => console.log(err));
     }
-    
-    if (nbMessages > 100) {
-        nbDelete = 100;
-    } else {
-        nbDelete = nbMessages + 1;
-    }
 
-    if (nbMessages > 100) {
-        nbDelete = 100;
-    } else if (nbMessages == 100) {
-        nbDelete = 100;
-    } else {
-        nbDelete = nbMessages + 1;
+    if(messagesToDelete > 100) {
+        messageDeleting = 100;
+        message.delete();
+        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
+    } else if( messagesToDelete < 1) {
+        messageDeleting = 1;
+        message.delete();
+        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
+    } else if ( messagesToDelete > 1 || messagesToDelete < 100 ) {
+        messageDeleting = messagesToDelete;
+        message.delete();
+        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
     }
-
-    message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
 };
 
 exports.help = {

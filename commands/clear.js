@@ -15,15 +15,15 @@ exports.run = (client, message, args) => {
     if(messagesToDelete > 100) {
         messageDeleting = 100;
         message.delete();
-        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
+        message.channel.bulkDelete(messageDeleting, true).catch(err => console.log(err));
     } else if( messagesToDelete < 1) {
         messageDeleting = 1;
         message.delete();
-        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
+        message.channel.bulkDelete(messageDeleting, true).catch(err => console.log(err));
     } else if ( messagesToDelete > 1 || messagesToDelete < 100 ) {
         messageDeleting = messagesToDelete;
         message.delete();
-        message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
+        message.channel.bulkDelete(messageDeleting, true).catch(err => console.log(err));
     }
 };
 

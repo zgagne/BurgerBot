@@ -4,12 +4,12 @@ exports.run = (client, message, args) => {
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.delete();
-        message.channel.send(`Vous n'avez pas les permissions nécessaires pour éxécuter cette commande.`);
+        message.channel.send(`Vous n'avez pas les permissions nécessaires pour éxécuter cette commande.`).catch(err => console.log(err));
     }
 
     if (isNaN(nbMessages) || parseInt(nbMessages) <= 0) {
         message.delete();
-        message.channel.send(`Veuillez choisir un nombre supérieur à 0.`);
+        message.channel.send(`Veuillez choisir un nombre supérieur à 0.`).catch(err => console.log(err));
     }
     
     if (nbMessages > 100) {
@@ -26,7 +26,7 @@ exports.run = (client, message, args) => {
         nbDelete = nbMessages + 1;
     }
 
-    message.channel.bulkDelete(nbDelete, true);
+    message.channel.bulkDelete(nbDelete, true).catch(err => console.log(err));
 };
 
 exports.help = {

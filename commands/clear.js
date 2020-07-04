@@ -7,7 +7,7 @@ exports.run = (client, message, args) => {
         message.channel.send(`Vous n'avez pas les permissions nécessaires pour éxécuter cette commande.`).catch(err => console.log(err));
     }
 
-    if (isNaN(messageDeleting) || parseInt(messageDeleting) <= 0) {
+    if (isNaN(messagesToDelete) || parseInt(messagesToDelete) <= 0) {
         message.delete();
         message.channel.send(`Veuillez choisir un nombre supérieur à 0.`).catch(err => console.log(err));
     }
